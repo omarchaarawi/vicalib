@@ -240,26 +240,30 @@ std::shared_ptr<VicalibTask> VicalibEngine::InitTask() {
     starting_cam->SetType("calibu_fu_fv_u0_v0_rational6");
     input_cameras.emplace_back(starting_cam, Sophus::SE3d());
 
-      } else if (type == "kb4") {
-    Eigen::Vector2i size_;
-    Eigen::VectorXd params_(calibu::KannalaBrandtCamera<double>::NumParams);
-    size_ << w, h;
-    params_  << 300, 300, w/2.0, h/2.0, 0.0, 0.0, 0.0, 0.0;
-    std::shared_ptr<calibu::CameraInterface<double>>
-      starting_cam(new calibu::KannalaBrandtCamera<double>(params_, size_));
-    starting_cam->SetType("calibu_fu_fv_u0_v0_kb4");
-    input_cameras.emplace_back(starting_cam, Sophus::SE3d());
+      } 
+      
+    //   else if (type == "kb4") {
+    // Eigen::Vector2i size_;
+    // Eigen::VectorXd params_(calibu::KannalaBrandtCamera<double>::NumParams);
+    // size_ << w, h;
+    // params_  << 300, 300, w/2.0, h/2.0, 0.0, 0.0, 0.0, 0.0;
+    // std::shared_ptr<calibu::CameraInterface<double>>
+    //   starting_cam(new calibu::KannalaBrandtCamera<double>(params_, size_));
+    // starting_cam->SetType("calibu_fu_fv_u0_v0_kb4");
+    // input_cameras.emplace_back(starting_cam, Sophus::SE3d());
 
-      } else if (type == "linear") {
-        Eigen::Vector2i size_;
-        Eigen::VectorXd params_(calibu::LinearCamera<double>::NumParams);
-        size_ << w, h;
-        params_ << 300, 300, w/2.0, h/2.0;
-        std::shared_ptr<calibu::CameraInterface<double>>
-          starting_cam(new calibu::LinearCamera<double>(params_, size_));
-        starting_cam->SetType("calibu_fu_fv_u0_v0");
-        input_cameras.emplace_back(starting_cam, Sophus::SE3d());
-      }
+    //   } 
+      
+    //   else if (type == "linear") {
+    //     Eigen::Vector2i size_;
+    //     Eigen::VectorXd params_(calibu::LinearCamera<double>::NumParams);
+    //     size_ << w, h;
+    //     params_ << 300, 300, w/2.0, h/2.0;
+    //     std::shared_ptr<calibu::CameraInterface<double>>
+    //       starting_cam(new calibu::LinearCamera<double>(params_, size_));
+    //     starting_cam->SetType("calibu_fu_fv_u0_v0");
+    //     input_cameras.emplace_back(starting_cam, Sophus::SE3d());
+    //   }
       input_cameras.back().camera->SetRDF(calibu::RdfRobotics.matrix());
     }
   }
